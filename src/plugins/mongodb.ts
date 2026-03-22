@@ -18,7 +18,8 @@ const getMongoOptions = async (fastify: FastifyInstance): Promise<FastifyMongodb
 
   return {
     ...commonOptions,
-    url: fastify.config.MONGO_URL
+    url: fastify.config.MONGO_URL,
+    database: fastify.config.MONGO_DB_NAME
   };
 };
 
