@@ -32,6 +32,16 @@ const routes: RouteOptions[] = [
         reply.code(HttpStatusCodes.OK).send(body);
       }
     }
+  } as const,
+  {
+    method: HttpMethods.GET,
+    url: '/crash',
+    schema: { tags, hide: true },
+    handler: async (request) => {
+      request.log.error('Crash endpoint triggered, terminating process');
+      setTimeout(() => process.exit(1), 100);
+      return { status: 'crashing' };
+    }
   } as const
 ] as const;
 
